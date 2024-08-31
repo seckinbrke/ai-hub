@@ -113,5 +113,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
     borderTopWidth: 2,
     borderColor: 'rgba(30, 32, 30, 0.9)',
+    gap: 16,
   },
 });

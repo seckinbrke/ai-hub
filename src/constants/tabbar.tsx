@@ -15,8 +15,8 @@ export const defaultIconRenderer = ({icon}: any) => {
 
 const styles = StyleSheet.create({
   icon: {
-    height: 18,
-    width: 18,
+    height: 20,
+    width: 20,
   },
 });
 

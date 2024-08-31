@@ -48,8 +48,6 @@ export const theme = {
     },
     gradients: {
       generalGradient: ['#A0FFD1', '#6FC1C9'],
-      shortGradient: ['#A453FF', '#4E9BFF'],
-      notGradient: ['#1A1B28', '#1A1B28'],
     },
     alerts: [
       {

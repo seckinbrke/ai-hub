@@ -46,15 +46,15 @@ const StackWrapper = () => {
       name: 'Home',
     },
     {
-      activeIcon: require('./assets/tab/home-active.png'),
+      activeIcon: require('./assets/tab/chat-active.png'),
       name: 'AI Chat',
     },
     {
-      activeIcon: require('./assets/tab/home-active.png'),
+      activeIcon: require('./assets/tab/art-active.png'),
       name: 'AI Art',
     },
     {
-      activeIcon: require('./assets/tab/home-active.png'),
+      activeIcon: require('./assets/tab/note-active.png'),
       name: 'AI Note',
     },
   ];

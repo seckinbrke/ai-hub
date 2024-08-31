@@ -50,7 +50,7 @@ const BubbleTab: React.FC<IBubbleTab> = ({
   const tabWidth = useAnimation({
     type: 'timing',
     initialValue: isActive ? activeTabSize : disabledTabSize,
-    toValue: isOpenAnimation ? activeTabSize : 75,
+    toValue: isOpenAnimation ? activeTabSize : 50,
     duration: 300,
     useNativeDriver: false,
   });
@@ -99,7 +99,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     justifyContent: 'center',
     alignItems: 'center',
-    marginHorizontal: 3,
   },
   animatedWrapper: {
     backgroundColor: 'transparent',
