@@ -115,8 +115,9 @@ const styles = StyleSheet.create({
   },
   button1Image: {
     position: 'absolute',
-    top: -9,
+    bottom: 0,
     right: 0,
+    opacity: 0.7,
   },
 
   // 2
@@ -140,6 +141,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     right: 0,
+    opacity: 0.7,
   },
 
   // 3
@@ -164,6 +166,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     right: 2,
+    opacity: 0.7,
   },
 
   circle: {
