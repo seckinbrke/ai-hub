@@ -18,7 +18,7 @@ const BlurBox = ({
 }: React.PropsWithChildren<Props>): JSX.Element => {
   return (
     <ImageBackground
-      imageStyle={{opacity: 0.7}}
+      imageStyle={{opacity: 0.2}}
       source={require('../../assets/main-bg.png')}
       style={[styles.wrapper, props.style]}>
       {props.children}

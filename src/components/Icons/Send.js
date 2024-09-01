@@ -10,6 +10,7 @@ const SvgSend = props => (
     viewBox="0 0 24 24"
     {...props}>
     <Path
+      stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={1.5}

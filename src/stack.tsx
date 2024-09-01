@@ -93,22 +93,22 @@ const StackWrapper = () => {
         )}>
         <Tab.Screen
           name="One"
-          options={{headerShown: false}} // No header for this screen
+          options={{headerShown: false}}
           component={HomeScreen}
         />
         <Tab.Screen
           name="Two"
-          options={{headerShown: false}} // No header for this screen
+          options={{headerShown: false}}
           component={Screen}
         />
         <Tab.Screen
           name="Three"
-          options={{headerShown: false}} // No header for this screen
+          options={{headerShown: false}}
           component={Screen}
         />
         <Tab.Screen
           name="home"
-          options={{headerShown: false}} // No header for this screen
+          options={{headerShown: false}}
           component={Screen}
         />
       </Tab.Navigator>
@@ -119,7 +119,7 @@ const StackWrapper = () => {
     <BlurBox>
       <Stack.Navigator
         screenOptions={StackNavigatorScreenOptions}
-        initialRouteName={'TabWrapper'}>
+        initialRouteName={'ChatScreen'}>
         {isFirstLaunch === undefined ? (
           <Stack.Screen
             name="Loading"
@@ -133,7 +133,11 @@ const StackWrapper = () => {
               options={TabWrapperScreenOptions}
               component={TabWrapper}
             />
-            <Stack.Screen options={ChatScreenOptions} name="ChatScreen" component={ChatScreen} />
+            <Stack.Screen
+              options={ChatScreenOptions}
+              name="ChatScreen"
+              component={ChatScreen}
+            />
           </>
         )}
       </Stack.Navigator>

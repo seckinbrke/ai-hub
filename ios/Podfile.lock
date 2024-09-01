@@ -1663,6 +1663,8 @@ PODS:
     - Yoga
   - RNShare (10.2.1):
     - React-Core
+  - RNSoundRecorder (1.5.0):
+    - React
   - RNStoreReview (0.4.3):
     - React-Core
   - RNSVG (15.6.0):
@@ -1748,6 +1750,7 @@ DEPENDENCIES:
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNShare (from `../node_modules/react-native-share`)
+  - RNSoundRecorder (from `../node_modules/react-native-sound-recorder`)
   - RNStoreReview (from `../node_modules/react-native-store-review`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNTextGradientView (from `../node_modules/react-native-text-gradient`)
@@ -1905,6 +1908,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-screens"
   RNShare:
     :path: "../node_modules/react-native-share"
+  RNSoundRecorder:
+    :path: "../node_modules/react-native-sound-recorder"
   RNStoreReview:
     :path: "../node_modules/react-native-store-review"
   RNSVG:
@@ -1988,6 +1993,7 @@ SPEC CHECKSUMS:
   RNReanimated: b0912c8ba12f6c03db07c851c4de71c3eed6c83c
   RNScreens: 19719a9c326e925498ac3b2d35c4e50fe87afc06
   RNShare: 0fad69ae2d71de9d1f7b9a43acf876886a6cb99c
+  RNSoundRecorder: a753a2f5f3744c0e13922537222c6e0b926e5227
   RNStoreReview: 31dbfd0dac2eea9675f0b84f1dd3261c2110c337
   RNSVG: 5da7a24f31968ec74f0b091e3440080f347e279b
   RNTextGradientView: 3eb4744303f801546fad35ac47a53cc82257cb25

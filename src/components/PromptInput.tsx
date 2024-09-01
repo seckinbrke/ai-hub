@@ -56,7 +56,7 @@ const PromptInput: React.FC<Props> = ({
           style={[styles.sendButton, buttonStyle]}
           onPress={onSubmitEditing}
           disabled={!text?.length}>
-          <Send width={28} height={28} />
+          <Send width={28} height={28} color={'white'} />
         </TouchableOpacity>
       </View>
     </View>
