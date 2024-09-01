@@ -1,22 +1,26 @@
 /* eslint-disable react/no-unstable-nested-components */
-import React, {useEffect, useState} from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {
-  StackNavigatorScreenOptions,
-  HomeScreenStackOptions,
-} from './common/stackOptions';
-import HomeScreen from './screens/HomeScreen';
-import {
-  getIsFirstLaunchFromStorage,
-  setIsFirstLaunchToStorage,
-} from './common/functions';
-import BubbleTabBar from './components/BubbleTabBar';
 import {
   BottomTabBarProps,
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
-import {IBubbleTabConfig} from './constants/types';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, View} from 'react-native';
+import {
+  getIsFirstLaunchFromStorage,
+  setIsFirstLaunchToStorage,
+} from './common/functions';
+import {
+  ChatScreenOptions,
+  StackNavigatorScreenOptions,
+  TabWrapperScreenOptions,
+} from './common/stackOptions';
 import BlurBox from './components/box/BlurBox';
+import BubbleTabBar from './components/BubbleTabBar';
+import {IBubbleTabConfig} from './constants/types';
+import HomeScreen from './screens/HomeScreen';
+import Screen from './screens/Screen';
+import ChatScreen from './screens/ChatScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -79,8 +83,7 @@ const StackWrapper = () => {
   const TabWrapper = () => {
     return (
       <Tab.Navigator
-        screenOptions={StackNavigatorScreenOptions as any}
-        sceneContainerStyle={{backgroundColor: 'transparent'}}
+        sceneContainerStyle={styles.sceneContainer}
         tabBar={({state, descriptors, navigation}) => (
           <CustomTabBar
             state={state}
@@ -90,45 +93,58 @@ const StackWrapper = () => {
         )}>
         <Tab.Screen
           name="One"
-          options={HomeScreenStackOptions as any}
+          options={{headerShown: false}} // No header for this screen
           component={HomeScreen}
         />
         <Tab.Screen
           name="Two"
-          options={HomeScreenStackOptions as any}
-          component={HomeScreen}
+          options={{headerShown: false}} // No header for this screen
+          component={Screen}
         />
         <Tab.Screen
           name="Three"
-          options={HomeScreenStackOptions as any}
-          component={HomeScreen}
+          options={{headerShown: false}} // No header for this screen
+          component={Screen}
         />
         <Tab.Screen
           name="home"
-          options={HomeScreenStackOptions as any}
-          component={HomeScreen}
+          options={{headerShown: false}} // No header for this screen
+          component={Screen}
         />
       </Tab.Navigator>
     );
   };
 
-  if (isFirstLaunch === undefined) {
-    return null;
-  }
-
   return (
     <BlurBox>
       <Stack.Navigator
-        screenOptions={StackNavigatorScreenOptions as any}
-        initialRouteName={'HomeScreen'}>
-        <Stack.Screen
-          options={HomeScreenStackOptions as any}
-          name="HomeScreen"
-          component={TabWrapper}
-        />
+        screenOptions={StackNavigatorScreenOptions}
+        initialRouteName={'TabWrapper'}>
+        {isFirstLaunch === undefined ? (
+          <Stack.Screen
+            name="Loading"
+            component={() => <View />}
+            options={{headerShown: false}}
+          />
+        ) : (
+          <>
+            <Stack.Screen
+              name="TabWrapper"
+              options={TabWrapperScreenOptions}
+              component={TabWrapper}
+            />
+            <Stack.Screen options={ChatScreenOptions} name="ChatScreen" component={ChatScreen} />
+          </>
+        )}
       </Stack.Navigator>
     </BlurBox>
   );
 };
+
+const styles = StyleSheet.create({
+  sceneContainer: {
+    backgroundColor: 'transparent',
+  },
+});
 
 export default StackWrapper;

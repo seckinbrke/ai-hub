@@ -16,8 +16,8 @@ const App = () => {
 
   useEffect(() => {
     const initApp = async () => {
-      const sub = await fetchPurchases(true);
-      dispatch(setIsSubs(sub));
+      // const sub = await fetchPurchases(true);
+      // dispatch(setIsSubs(sub));
       SplashScreen.hide();
     };
 
