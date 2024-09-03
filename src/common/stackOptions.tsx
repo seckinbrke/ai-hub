@@ -1,5 +1,5 @@
 import React from 'react';
-import {Back} from '../components/Icons';
+import {Back, Refresh} from '../components/Icons';
 import type {NativeStackNavigationOptions as NativeStackNavigationOptionsType} from '@react-navigation/native-stack';
 import MotionPress from '../components/Motion/MotionPress';
 import {StyleSheet} from 'react-native';
@@ -7,6 +7,7 @@ import CustomHeader from '../components/CustomHeader';
 
 type OptionsPropsType = {
   navigation: any;
+  route: any;
 };
 
 export const StackNavigatorScreenOptions = () => ({
@@ -27,15 +28,33 @@ export const TabWrapperScreenOptions = () => ({
 
 export const ChatScreenOptions = ({
   navigation,
+  route,
 }: OptionsPropsType & NativeStackNavigationOptionsType) => ({
   headerShown: true,
   header: () => (
     <CustomHeader
       headerLeft={<BackButton navigation={navigation} />}
       title="Chat with Echo"
+      headerRight={
+        <RefreshButton
+          navigation={navigation}
+          route={route}
+          onPress={() => route.params?.refreshConversation()}
+        />
+      }
     />
   ),
 });
+
+const RefreshButton = ({onPress}: any) => {
+  return (
+    <MotionPress
+      onPress={onPress}
+      style={styles.buttonContainer}>
+      <Refresh color={'white'} height={22} width={22} />
+    </MotionPress>
+  );
+};
 
 const BackButton = ({navigation}: any) => {
   return (

@@ -63,6 +63,10 @@ const StackWrapper = () => {
     },
   ];
 
+  const Loading = () => {
+    return <View />;
+  };
+
   const CustomTabBar: React.FC<BottomTabBarProps | any> = ({
     state,
     descriptors,
@@ -123,7 +127,7 @@ const StackWrapper = () => {
         {isFirstLaunch === undefined ? (
           <Stack.Screen
             name="Loading"
-            component={() => <View />}
+            component={Loading}
             options={{headerShown: false}}
           />
         ) : (

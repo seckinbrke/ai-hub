@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {StyleSheet, TextInput, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, TextInput, View} from 'react-native';
 import {theme} from '../constants/theme';
-import {Send} from './Icons';
+// import {Send} from './Icons';
 
 export type Props = {
   text: string;
@@ -12,7 +12,7 @@ export type Props = {
   onChangeText: any;
   containerStyle?: any;
   iconStyle?: any;
-  buttonStyle?: any;
+  // buttonStyle?: any;
 };
 
 const PromptInput: React.FC<Props> = ({
@@ -21,7 +21,7 @@ const PromptInput: React.FC<Props> = ({
   onChangeText,
   onSubmitEditing,
   isLoading,
-  buttonStyle,
+  // buttonStyle,
 }) => {
   const [inputHeight, setInputHeight] = useState(45);
 
@@ -45,20 +45,18 @@ const PromptInput: React.FC<Props> = ({
           editable={!isLoading}
           selectionColor={theme.colors.gradients.generalGradient[1]}
           onContentSizeChange={event =>
-            setInputHeight(
-              Math.min(event.nativeEvent.contentSize.height, 150), // Sets max height to 150
-            )
+            setInputHeight(Math.min(event.nativeEvent.contentSize.height, 150))
           }
         />
       </View>
-      <View style={styles.buttonContainer}>
+      {/* <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={[styles.sendButton, buttonStyle]}
           onPress={onSubmitEditing}
           disabled={!text?.length}>
           <Send width={28} height={28} color={'white'} />
         </TouchableOpacity>
-      </View>
+      </View> */}
     </View>
   );
 };
@@ -81,15 +79,17 @@ const styles = StyleSheet.create({
     flex: 0.15,
   },
   sendButton: {
-    height: 35,
-    width: 35,
+    height: 40,
+    width: 40,
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 8,
+    backgroundColor: '#a0e1e0',
+    borderRadius: 20,
   },
   input: {
     color: theme.colors.main.white,
-    maxHeight: 150, // Added maxHeight to limit the input's height
+    paddingVertical: -10,
+    maxHeight: 150,
   },
 });
 

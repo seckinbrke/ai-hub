@@ -8,6 +8,7 @@ import {
   ScrollView,
   Text,
   Keyboard,
+  Image,
 } from 'react-native';
 import ChatInputArea from '../components/ChatInputArea';
 import {theme} from '../constants/theme';
@@ -18,7 +19,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {setFreeRight} from '../redux/features/appSlice';
 import {askToChatGpt} from '../api/chatGPT';
 
-const ChatScreen = ({}: any) => {
+const ChatScreen = ({navigation, route}: any) => {
   const dispatch = useDispatch();
   const scrollRef = useRef<ScrollView>(null);
   const {freeRights} = useSelector((state: any) => state.app);
@@ -38,6 +39,17 @@ const ChatScreen = ({}: any) => {
       keyboardDidShowListener.remove();
     };
   }, []);
+
+  const refreshConversation = useCallback(() => {
+    setConversation([]); // Reset the conversation to an empty array
+  }, []);
+
+  useEffect(() => {
+    // Set params only if they haven't been set yet
+    if (!route.params?.refreshConversation) {
+      navigation.setParams({refreshConversation});
+    }
+  }, [navigation, refreshConversation, route.params]);
 
   const handleSubmit = useCallback(async () => {
     triggerVibration();
@@ -74,6 +86,7 @@ const ChatScreen = ({}: any) => {
       keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0}>
       <ScrollView
         ref={scrollRef}
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollView}
         keyboardShouldPersistTaps="handled">
         <View style={styles.chatContainer}>
@@ -100,6 +113,17 @@ const ChatScreen = ({}: any) => {
               </View>
             );
           })}
+          {isLoading && (
+            <View
+              key={'typingLoader'}
+              style={[styles.received, styles.chatBubble]}>
+              <Image
+                resizeMode="contain"
+                source={require('../assets/typing.gif')}
+                style={styles.typingLoader}
+              />
+            </View>
+          )}
         </View>
       </ScrollView>
       <ChatInputArea
@@ -153,8 +177,8 @@ const styles = StyleSheet.create({
     letterSpacing: 0.2,
   },
   typingLoader: {
-    width: 80,
-    height: 20,
+    width: 60,
+    height: 15,
   },
   settings: {
     height: 30,
@@ -163,3 +187,61 @@ const styles = StyleSheet.create({
 });
 
 export default ChatScreen;
+
+// const handleSubmit = useCallback(
+//   async (recordingPath?: string) => {
+//     if (!question?.length && !recordingPath) return;
+
+//     setIsLoading(true);
+//     triggerVibration();
+
+//     const newConversation = [
+//       ...conversation,
+//       recordingPath
+//         ? {role: 'user', isAudio: true, content: 'audio'}
+//         : {role: 'user', content: question},
+//     ];
+
+//     const formData = new FormData();
+//     if (recordingPath) {
+//       formData.append('file', {
+//         name: 'audio.m4a',
+//         type: 'audio/m4a',
+//         uri: recordingPath,
+//       });
+//     }
+
+//     formData.append('messages', JSON.stringify(newConversation));
+
+//     console.log('Recording Path:', recordingPath);
+//     console.log('New Conversation:', newConversation);
+//     console.log('FormData:', formData);
+
+//     setConversation(newConversation);
+//     setQuestion('');
+
+//     try {
+//       const answer = await askToChatGpt(formData);
+//       if (answer.lastMessageTranscript) {
+//         newConversation.pop(); // Remove the last message
+//         newConversation.push({
+//           role: 'user',
+//           content: answer.lastMessageTranscript,
+//           isAudio: true,
+//         });
+//       }
+
+//       setConversation([...newConversation, answer.newMessage]);
+//       setNewRightCount();
+//     } catch (error) {
+//       console.error('Error while submitting:', error);
+//     } finally {
+//       setIsLoading(false);
+//       setTimeout(
+//         () => scrollRef?.current?.scrollToEnd({animated: true}),
+//         200,
+//       );
+//     }
+//   },
+//   [question, conversation],
+// );

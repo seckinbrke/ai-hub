@@ -1,14 +1,13 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, {useEffect, useRef, useState} from 'react';
-import {View, StyleSheet, Alert, Text, Animated} from 'react-native';
+import React from 'react';
+import {View, StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import LinearGradient from 'react-native-linear-gradient';
 import PromptInput from '../components/PromptInput';
 import MotionPress from '../components/Motion/MotionPress';
-import {Microphone, Rubbish, Send} from '../components/Icons';
+import {Send} from '../components/Icons';
 import {theme} from '../constants/theme';
 import {WIDTH} from '../common/constants';
-import SoundRecorder from 'react-native-sound-recorder';
+// import SoundRecorder from 'react-native-sound-recorder';
 
 const ChatInputArea = ({
   question,
@@ -16,132 +15,112 @@ const ChatInputArea = ({
   handleSubmit,
   isLoading,
 }: any) => {
-  const [recording, setRecording] = useState(false);
-  const [intervalId, setIntervalId] = useState<any>(null);
-  const [recordingTime, setRecordingTime] = useState(0);
-  const blinkAnim = useRef(new Animated.Value(0)).current;
+  // const [intervalId, setIntervalId] = useState<any>(null);
+  // const [recordingTime, setRecordingTime] = useState(0);
+  // const blinkAnim = useRef(new Animated.Value(0)).current;
 
-  useEffect(() => {
-    if (recording) {
-      Animated.loop(
-        Animated.sequence([
-          Animated.timing(blinkAnim, {
-            toValue: 1,
-            duration: 500,
-            useNativeDriver: true,
-          }),
-          Animated.timing(blinkAnim, {
-            toValue: 0,
-            duration: 500,
-            useNativeDriver: true,
-          }),
-        ]),
-      ).start();
-    } else {
-      blinkAnim.stopAnimation();
-      blinkAnim.setValue(0);
-    }
-  }, [recording]);
+  // useEffect(() => {
+  //   if (recording) {
+  //     Animated.loop(
+  //       Animated.sequence([
+  //         Animated.timing(blinkAnim, {
+  //           toValue: 1,
+  //           duration: 500,
+  //           useNativeDriver: true,
+  //         }),
+  //         Animated.timing(blinkAnim, {
+  //           toValue: 0,
+  //           duration: 500,
+  //           useNativeDriver: true,
+  //         }),
+  //       ]),
+  //     ).start();
+  //   } else {
+  //     blinkAnim.stopAnimation();
+  //     blinkAnim.setValue(0);
+  //   }
+  // }, [recording]);
 
-  const startRecording = async () => {
-    setRecording(true);
-    setRecordingTime(0); // Reset the recording time to 0
-    const id = setInterval(() => {
-      setRecordingTime(prevTime => prevTime + 1);
-    }, 1000); // Update every second
-    setIntervalId(id);
+  // const startRecording = async () => {
+  //   console.log('started 1');
 
-    // Your existing recording logic
-    try {
-      SoundRecorder.start(SoundRecorder.PATH_CACHE + `/${Date.now()}.m4a`).then(
-        () => {
-          console.log('started recording');
-        },
-      );
-    } catch (error) {
-      console.error('Error starting recorder:', error);
-      Alert.alert('Error', 'Error occurred during initiating recorder');
-      setRecording(false);
-      clearInterval(id); // Stop updating the time if recording fails
-    }
-  };
+  //   setRecording(true);
+  //   setRecordingTime(0); // Reset the recording time to 0
+  //   const id = setInterval(() => {
+  //     setRecordingTime(prevTime => prevTime + 1);
+  //   }, 1000); // Update every second
+  //   setIntervalId(id);
 
-  const stopRecording = async () => {
-    setRecording(false);
-    clearInterval(intervalId); // Stop updating the time when recording stops
-    setRecordingTime(0); // Optionally reset the time or save it as needed
-    try {
-      SoundRecorder.stop().then(result => {
-        console.log('stopped recording, audio file saved at: ' + result.path);
-        // setRecordingPath(result.path);
-      });
-    } catch (error) {
-      console.error('Error stopping recorder:', error);
-      Alert.alert('Error', 'Error occurred during stopping recorder');
-    }
-  };
+  //   // Your existing recording logic
+  //   try {
+  //     SoundRecorder.start(SoundRecorder.PATH_CACHE + `/${Date.now()}.m4a`).then(
+  //       () => {
+  //         console.log('started recording');
+  //       },
+  //     );
+  //   } catch (error) {
+  //     console.error('Error starting recorder:', error);
+  //     Alert.alert('Error', 'Error occurred during initiating recorder');
+  //     setRecording(false);
+  //     clearInterval(id); // Stop updating the time if recording fails
+  //   }
+  // };
 
-  const cancelRecording = () => {
-    setRecording(false);
-    clearInterval(intervalId); // Stop updating the time when recording stops
-    setRecordingTime(0); // Reset the time to 0
-    // Cancel the recording process here
-    SoundRecorder.stop()
-      .then(() => {
-        console.log('Recording canceled');
-        // Optionally delete the recording file if necessary
-      })
-      .catch(error => {
-        console.error('Error canceling recorder:', error);
-      });
-  };
+  // const stopRecording = async () => {
+  //   try {
+  //     SoundRecorder.stop().then(result => {
+  //       console.log('stopped recording, audio file saved at: ' + result.path);
+  //       handleSubmit(result.path);
+  //       setRecording(false);
+  //       clearInterval(intervalId); // Stop updating the time when recording stops
+  //       setRecordingTime(0); // Optionally reset the time or save it as needed
+  //     });
+  //   } catch (error) {
+  //     console.error('Error stopping recorder:', error);
+  //     Alert.alert('Error', 'Error occurred during stopping recorder');
+  //   }
+  // };
 
-  const formatTime = (timeInSeconds: number) => {
-    const minutes = Math.floor(timeInSeconds / 60);
-    const seconds = timeInSeconds % 60;
-    return `${minutes < 10 ? '0' : ''}${minutes}:${
-      seconds < 10 ? '0' : ''
-    }${seconds}`;
-  };
+  // const cancelRecording = () => {
+  //   setRecording(false);
+  //   clearInterval(intervalId); // Stop updating the time when recording stops
+  //   setRecordingTime(0); // Reset the time to 0
+  //   // Cancel the recording process here
+  //   SoundRecorder.stop()
+  //     .then(() => {
+  //       console.log('Recording canceled');
+  //       // Optionally delete the recording file if necessary
+  //     })
+  //     .catch(error => {
+  //       console.error('Error canceling recorder:', error);
+  //     });
+  // };
+
+  // const formatTime = (timeInSeconds: number) => {
+  //   const minutes = Math.floor(timeInSeconds / 60);
+  //   const seconds = timeInSeconds % 60;
+  //   return `${minutes < 10 ? '0' : ''}${minutes}:${
+  //     seconds < 10 ? '0' : ''
+  //   }${seconds}`;
+  // };
 
   return (
     <SafeAreaView edges={['bottom']} style={styles.safeAreaBottom}>
       <View style={styles.bottomLeft}>
-        {!recording ? (
-          <PromptInput
-            text={question}
-            placeholder={'Write anything here....'}
-            onChangeText={setQuestion}
-            onSubmitEditing={handleSubmit}
-            isLoading={isLoading}
-          />
-        ) : (
-          <View style={styles.recordingContainer}>
-            <Animated.View
-              style={[
-                styles.blinkingCircle,
-                {
-                  opacity: blinkAnim,
-                },
-              ]}
-            />
-            <Text style={styles.recording}> {formatTime(recordingTime)}</Text>
-            <MotionPress onPress={() => cancelRecording()}>
-              <Rubbish width={20} height={20} />
-            </MotionPress>
-          </View>
-        )}
+        <PromptInput
+          text={question}
+          placeholder={'Write anything here....'}
+          onChangeText={setQuestion}
+          onSubmitEditing={handleSubmit}
+          isLoading={isLoading}
+        />
       </View>
       <View style={styles.bottomRight}>
-        <MotionPress onPress={() => startRecording()}>
+        <MotionPress onPress={() => handleSubmit()}>
           <LinearGradient
             colors={theme.colors.gradients.generalGradient}
             style={styles.recordViewInner}>
-            {recording ? (
-              <Send width={20} height={20} color={'black'} />
-            ) : (
-              <Microphone width={20} height={20} />
-            )}
+            <Send width={25} height={25} color={'black'} />
           </LinearGradient>
         </MotionPress>
       </View>
@@ -219,3 +198,46 @@ const styles = StyleSheet.create({
 });
 
 export default ChatInputArea;
+
+/* <SafeAreaView edges={['bottom']} style={styles.safeAreaBottom}>
+<View style={styles.bottomLeft}>
+  {!recording ? (
+    <PromptInput
+      text={question}
+      placeholder={'Write anything here....'}
+      onChangeText={setQuestion}
+      onSubmitEditing={handleSubmit}
+      isLoading={isLoading}
+    />
+  ) : (
+    <View style={styles.recordingContainer}>
+      <Animated.View
+        style={[
+          styles.blinkingCircle,
+          {
+            opacity: blinkAnim,
+          },
+        ]}
+      />
+      <Text style={styles.recording}> {formatTime(recordingTime)}</Text>
+      <MotionPress onPress={() => cancelRecording()}>
+        <Rubbish width={20} height={20} />
+      </MotionPress>
+    </View>
+  )}
+</View>
+<View style={styles.bottomRight}>
+  <MotionPress
+    onPress={() => (recording ? stopRecording() : startRecording())}>
+    <LinearGradient
+      colors={theme.colors.gradients.generalGradient}
+      style={styles.recordViewInner}>
+      {recording ? (
+        <Send width={20} height={20} color={'black'} />
+      ) : (
+        <Microphone width={20} height={20} />
+      )}
+    </LinearGradient>
+  </MotionPress>
+</View>
+</SafeAreaView> */
