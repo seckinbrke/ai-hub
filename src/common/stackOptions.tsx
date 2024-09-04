@@ -1,5 +1,5 @@
 import React from 'react';
-import {Back, Refresh} from '../components/Icons';
+import {Back, Refresh, Settings} from '../components/Icons';
 import type {NativeStackNavigationOptions as NativeStackNavigationOptionsType} from '@react-navigation/native-stack';
 import MotionPress from '../components/Motion/MotionPress';
 import {StyleSheet} from 'react-native';
@@ -12,11 +12,48 @@ type OptionsPropsType = {
 
 export const StackNavigatorScreenOptions = () => ({
   contentStyle: {backgroundColor: 'transparent'},
-  gestureEnabled: true,
   headerShown: false,
+  gestureEnabled: true,
+  animation: 'fade',
+  animationDuration: 70,
 });
 
-export const TabWrapperScreenOptions = () => ({
+export const RootTabsScreenOptions = (): any => ({
+  headerShown: false,
+  animation: 'shift',
+  transitionSpec: {
+    animation: 'timing',
+    config: {
+      duration: 400,
+    },
+  },
+  sceneStyleInterpolator: ({current}: any) => ({
+    sceneStyle: {
+      opacity: current.progress.interpolate({
+        inputRange: [-1, 0, 1],
+        outputRange: [0, 1, 0],
+      }),
+    },
+  }),
+});
+
+export const SettingsScreenOptions = ({
+  navigation,
+}: OptionsPropsType & NativeStackNavigationOptionsType) => ({
+  headerShown: true,
+  // animation: 'none',
+  // freezeOnBlur: true,
+  header: () => (
+    <CustomHeader
+      headerLeft={<BackButton navigation={navigation} />}
+      title="Settings"
+    />
+  ),
+});
+
+export const TabWrapperScreenOptions = ({
+  navigation,
+}: OptionsPropsType & NativeStackNavigationOptionsType) => ({
   headerShown: true,
   headerTitle: '',
   headerTransparent: true,
@@ -24,6 +61,9 @@ export const TabWrapperScreenOptions = () => ({
     color: '#FFF',
     fontSize: 22,
   },
+  header: () => (
+    <CustomHeader headerRight={<SettingsButton navigation={navigation} />} />
+  ),
 });
 
 export const ChatScreenOptions = ({
@@ -48,10 +88,18 @@ export const ChatScreenOptions = ({
 
 const RefreshButton = ({onPress}: any) => {
   return (
+    <MotionPress onPress={onPress} style={styles.buttonContainer}>
+      <Refresh color={'white'} height={20} width={20} />
+    </MotionPress>
+  );
+};
+
+const SettingsButton = ({navigation}: any) => {
+  return (
     <MotionPress
-      onPress={onPress}
+      onPress={() => navigation.navigate('SettingsScreen')}
       style={styles.buttonContainer}>
-      <Refresh color={'white'} height={22} width={22} />
+      <Settings color={'white'} height={22} width={22} />
     </MotionPress>
   );
 };

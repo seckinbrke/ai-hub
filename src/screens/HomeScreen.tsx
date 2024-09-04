@@ -3,7 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {MainMenuCard1, MainMenuCard2, MainMenuCard3} from '../components/MainMenuCards';
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}: any) => {
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -14,7 +14,7 @@ const HomeScreen = () => {
       </View>
       <View style={styles.buttonContainer}>
         <View style={styles.leftButton}>
-          <MainMenuCard1 onPress={() => {}} />
+          <MainMenuCard1 onPress={() => navigation.navigate('ChatScreen')} />
         </View>
         <View style={styles.rightButtons}>
           <MainMenuCard2 onPress={() => {}} />
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    paddingTop: 64,
+    paddingTop: 86,
   },
   title: {
     fontSize: 32,

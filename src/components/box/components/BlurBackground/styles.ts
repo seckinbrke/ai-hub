@@ -2,6 +2,7 @@ import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
   background: {
+    backgroundColor: 'black',
     bottom: 0,
     left: 0,
     position: 'absolute',

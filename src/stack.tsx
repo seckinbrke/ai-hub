@@ -12,15 +12,16 @@ import {
 } from './common/functions';
 import {
   ChatScreenOptions,
+  SettingsScreenOptions,
   StackNavigatorScreenOptions,
   TabWrapperScreenOptions,
 } from './common/stackOptions';
-import BlurBox from './components/box/BlurBox';
 import BubbleTabBar from './components/BubbleTabBar';
 import {IBubbleTabConfig} from './constants/types';
 import HomeScreen from './screens/HomeScreen';
 import Screen from './screens/Screen';
 import ChatScreen from './screens/ChatScreen';
+import SettingsScreen from './screens/SettingsScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -120,32 +121,35 @@ const StackWrapper = () => {
   };
 
   return (
-    <BlurBox>
-      <Stack.Navigator
-        screenOptions={StackNavigatorScreenOptions}
-        initialRouteName={'ChatScreen'}>
-        {isFirstLaunch === undefined ? (
+    <Stack.Navigator
+      screenOptions={StackNavigatorScreenOptions as any}
+      initialRouteName={'TabWrapper'}>
+      {isFirstLaunch === undefined ? (
+        <Stack.Screen
+          name="Loading"
+          component={Loading}
+          options={{headerShown: false}}
+        />
+      ) : (
+        <>
           <Stack.Screen
-            name="Loading"
-            component={Loading}
-            options={{headerShown: false}}
+            name="TabWrapper"
+            options={TabWrapperScreenOptions as any}
+            component={TabWrapper}
           />
-        ) : (
-          <>
-            <Stack.Screen
-              name="TabWrapper"
-              options={TabWrapperScreenOptions}
-              component={TabWrapper}
-            />
-            <Stack.Screen
-              options={ChatScreenOptions}
-              name="ChatScreen"
-              component={ChatScreen}
-            />
-          </>
-        )}
-      </Stack.Navigator>
-    </BlurBox>
+          <Stack.Screen
+            options={ChatScreenOptions}
+            name="ChatScreen"
+            component={ChatScreen}
+          />
+          <Stack.Screen
+            options={SettingsScreenOptions as any}
+            name="SettingsScreen"
+            component={SettingsScreen}
+          />
+        </>
+      )}
+    </Stack.Navigator>
   );
 };
 

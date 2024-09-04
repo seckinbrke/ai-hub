@@ -38,7 +38,7 @@ const BlurEdge: React.FC<Props> = ({
     return null;
   }
   return (
-    <Canvas style={[style, {height}]}>
+    <Canvas style={[style, {height, backgroundColor:'black'}]}>
       <Rect x={0} y={0} width={SIZES.WINDOW.WIDTH} height={height}>
         <LinearGradient {...props} />
       </Rect>

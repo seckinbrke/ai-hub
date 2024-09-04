@@ -10,6 +10,7 @@ import {useDispatch} from 'react-redux';
 import {setIsSubs} from './redux/features/appSlice';
 import StackWrapper from './stack';
 import {theme} from './constants/theme';
+import BlurBox from './components/box/BlurBox';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -28,11 +29,12 @@ const App = () => {
     <GestureHandlerRootView
       style={{flex: 1, backgroundColor: theme.colors.main.black}}>
       <AlertNotificationRoot theme={'dark'} colors={theme.colors.alerts as any}>
-        <SafeAreaProvider
-          style={{flex: 1, backgroundColor: theme.colors.main.black}}>
-          <NavigationContainer>
-            <StackWrapper />
-          </NavigationContainer>
+        <SafeAreaProvider style={{flex: 1}}>
+          <BlurBox>
+            <NavigationContainer>
+              <StackWrapper />
+            </NavigationContainer>
+          </BlurBox>
         </SafeAreaProvider>
       </AlertNotificationRoot>
     </GestureHandlerRootView>
