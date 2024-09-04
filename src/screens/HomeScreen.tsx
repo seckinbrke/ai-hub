@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {MainMenuCard1, MainMenuCard2, MainMenuCard3} from '../components/MainMenuCards';
+import { theme } from '../constants/theme';
 
 const HomeScreen = ({navigation}: any) => {
   return (
@@ -35,16 +36,19 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 32,
     color: '#B0B0B0',
+    fontFamily: theme.font.light,
   },
   name: {
     fontSize: 32,
     color: 'white',
     fontWeight: '600',
+    fontFamily: theme.font.black,
   },
   subTitle: {
-    fontSize: 20,
+    fontSize: 18,
     color: '#B0B0B0',
     marginTop: 8,
+    fontFamily: theme.font.light,
   },
   buttonContainer: {
     marginTop: 24,

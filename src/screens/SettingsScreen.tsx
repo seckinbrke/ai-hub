@@ -3,6 +3,7 @@ import {StyleSheet, Text, View, Image} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import SettingsButton from '../components/SettingsButton';
 import {Privacy, Share, Star, Terms} from '../components/Icons';
+import { theme } from '../constants/theme';
 
 const SettingsScreen = () => {
   return (
@@ -69,11 +70,12 @@ const styles = StyleSheet.create({
   },
   premiumTitle: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontFamily: theme.font.bold,
   },
   premiumDescription: {
     fontSize: 12,
     marginTop: 8,
+    fontFamily: theme.font.regular,
   },
   spacing: {
     marginTop: 32,

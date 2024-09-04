@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   msgText: {
-    fontFamily: theme.font.semiBold,
+    fontFamily: theme.font.medium,
     fontSize: 12,
     color: theme.colors.main.white,
     letterSpacing: 0.2,

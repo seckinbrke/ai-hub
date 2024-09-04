@@ -117,5 +117,6 @@ const styles = StyleSheet.create({
     width: 'auto',
     height: 'auto',
     color: theme.colors.gradients.generalGradient[0],
+    fontFamily: theme.font.bold,
   },
 });

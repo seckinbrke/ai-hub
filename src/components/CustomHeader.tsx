@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import { theme } from '../constants/theme';
 
 interface CustomHeaderProps {
   headerLeft?: React.ReactNode;
@@ -49,8 +50,8 @@ const styles = StyleSheet.create({
   },
   titleText: {
     fontSize: 18,
-    fontWeight: 'bold',
     color: 'white',
+    fontFamily: theme.font.bold,
   },
   rightContainer: {
     flex: 1,

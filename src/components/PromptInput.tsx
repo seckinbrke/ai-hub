@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   inputContainer: {
-    flex: 0.85,
+    flex: 0.95,
     padding: 10,
   },
   buttonContainer: {
@@ -90,6 +90,7 @@ const styles = StyleSheet.create({
     color: theme.colors.main.white,
     paddingVertical: -10,
     maxHeight: 150,
+    fontFamily: theme.font.regular,
   },
 });
 

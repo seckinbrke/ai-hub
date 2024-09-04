@@ -99,7 +99,7 @@ export default function AnimatedTyping(props) {
 
 let styles = StyleSheet.create({
   text: {
-    fontFamily: theme.font.semiBold,
+    fontFamily: theme.font.medium,
     fontSize: 12,
     color: '#ffffff',
     letterSpacing: 0.2,

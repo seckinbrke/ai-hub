@@ -3,6 +3,7 @@ import {StyleSheet, Text, View, Image} from 'react-native';
 import {WIDTH} from '../common/constants';
 import {Chat, Microphone, Photo} from './Icons';
 import MotionPress from './Motion/MotionPress';
+import { theme } from '../constants/theme';
 
 export const MainMenuCard1 = ({onPress}: any) => {
   return (
@@ -95,6 +96,7 @@ const styles = StyleSheet.create({
     marginTop: 32,
     textAlign: 'left',
     marginLeft: 16,
+    fontFamily: theme.font.bold,
   },
   button1: {
     backgroundColor: '#7BF6AD',
@@ -126,6 +128,7 @@ const styles = StyleSheet.create({
     color: '#0D0D0D',
     fontWeight: '600',
     marginTop: 16,
+    fontFamily: theme.font.bold,
   },
   buttonContent2: {
     flex: 1,
@@ -150,6 +153,7 @@ const styles = StyleSheet.create({
     color: '#0D0D0D',
     fontWeight: '600',
     marginTop: 16,
+    fontFamily: theme.font.bold,
   },
   buttonContent3: {
     flex: 1,
