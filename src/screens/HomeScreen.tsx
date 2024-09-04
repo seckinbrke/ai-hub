@@ -18,7 +18,7 @@ const HomeScreen = ({navigation}: any) => {
           <MainMenuCard1 onPress={() => navigation.navigate('ChatScreen')} />
         </View>
         <View style={styles.rightButtons}>
-          <MainMenuCard2 onPress={() => {}} />
+          <MainMenuCard2  onPress={() => navigation.navigate('PurchaseScreen')} />
           <MainMenuCard3 onPress={() => {}} />
         </View>
       </View>

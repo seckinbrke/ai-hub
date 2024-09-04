@@ -34,7 +34,7 @@ const BlurBackground = (): JSX.Element => {
           cx={index % 2 ? SIZES.WINDOW.WIDTH : 0}
           cy={step * index}
           r={r}
-          delay={index * 1000}
+          delay={index * 2000}
         />
       ))}
     </Canvas>

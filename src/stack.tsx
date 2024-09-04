@@ -12,6 +12,7 @@ import {
 } from './common/functions';
 import {
   ChatScreenOptions,
+  PurchaseScreenOptions,
   SettingsScreenOptions,
   StackNavigatorScreenOptions,
   TabWrapperScreenOptions,
@@ -22,6 +23,7 @@ import HomeScreen from './screens/HomeScreen';
 import Screen from './screens/Screen';
 import ChatScreen from './screens/ChatScreen';
 import SettingsScreen from './screens/SettingsScreen';
+import PurchaseScreen from './screens/PurchaseScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -147,6 +149,11 @@ const StackWrapper = () => {
             options={SettingsScreenOptions as any}
             name="SettingsScreen"
             component={SettingsScreen}
+          />
+          <Stack.Screen
+            options={PurchaseScreenOptions as any}
+            name="PurchaseScreen"
+            component={PurchaseScreen}
           />
         </>
       )}

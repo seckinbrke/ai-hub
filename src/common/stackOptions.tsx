@@ -51,6 +51,20 @@ export const SettingsScreenOptions = ({
   ),
 });
 
+export const PurchaseScreenOptions = ({
+  navigation,
+}: OptionsPropsType & NativeStackNavigationOptionsType) => ({
+  headerShown: true,
+  // animation: 'none',
+  // freezeOnBlur: true,
+  header: () => (
+    <CustomHeader
+      headerLeft={<BackButton navigation={navigation} />}
+      title="Choose your plan"
+    />
+  ),
+});
+
 export const TabWrapperScreenOptions = ({
   navigation,
 }: OptionsPropsType & NativeStackNavigationOptionsType) => ({
