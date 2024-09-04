@@ -109,7 +109,7 @@ const ChatInputArea = ({
       <View style={styles.bottomLeft}>
         <PromptInput
           text={question}
-          placeholder={'Write anything here....'}
+          placeholder={'Write anything here...'}
           onChangeText={setQuestion}
           onSubmitEditing={handleSubmit}
           isLoading={isLoading}

@@ -89,11 +89,12 @@ const StackWrapper = () => {
     return (
       <Tab.Navigator
         sceneContainerStyle={styles.sceneContainer}
-        tabBar={({state, descriptors, navigation}) => (
+        tabBar={props => (
           <CustomTabBar
-            state={state}
-            descriptors={descriptors}
-            navigation={navigation}
+            {...props}
+            state={props.state}
+            descriptors={props.descriptors}
+            navigation={props.navigation}
           />
         )}>
         <Tab.Screen
