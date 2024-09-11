@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     height: 90,
     justifyContent: 'center',
     flexDirection: 'row',
-    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
     borderTopWidth: 2,
     borderColor: 'rgba(30, 32, 30, 0.9)',
     gap: 16,

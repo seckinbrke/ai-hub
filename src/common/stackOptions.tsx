@@ -70,7 +70,6 @@ export const TabWrapperScreenOptions = ({
 }: OptionsPropsType & NativeStackNavigationOptionsType) => ({
   headerShown: true,
   headerTitle: '',
-  headerTransparent: true,
   headerTitleStyle: {
     color: '#FFF',
     fontSize: 22,
@@ -89,6 +88,26 @@ export const ChatScreenOptions = ({
     <CustomHeader
       headerLeft={<BackButton navigation={navigation} />}
       title="Chat with Echo"
+      headerRight={
+        <RefreshButton
+          navigation={navigation}
+          route={route}
+          onPress={() => route.params?.refreshConversation()}
+        />
+      }
+    />
+  ),
+});
+
+export const TaskChatScreenOptions = ({
+  navigation,
+  route,
+}: OptionsPropsType & NativeStackNavigationOptionsType) => ({
+  headerShown: true,
+  header: () => (
+    <CustomHeader
+      headerLeft={<BackButton navigation={navigation} />}
+      title="Chat"
       headerRight={
         <RefreshButton
           navigation={navigation}

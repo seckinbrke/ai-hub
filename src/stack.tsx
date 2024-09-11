@@ -16,6 +16,7 @@ import {
   SettingsScreenOptions,
   StackNavigatorScreenOptions,
   TabWrapperScreenOptions,
+  TaskChatScreenOptions,
 } from './common/stackOptions';
 import BubbleTabBar from './components/BubbleTabBar';
 import {IBubbleTabConfig} from './constants/types';
@@ -24,6 +25,8 @@ import Screen from './screens/Screen';
 import ChatScreen from './screens/ChatScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import PurchaseScreen from './screens/PurchaseScreen';
+import AIChatScreen from './screens/AIChatScreen';
+import TaskChatScreen from './screens/TaskChatScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -107,7 +110,7 @@ const StackWrapper = () => {
         <Tab.Screen
           name="Two"
           options={{headerShown: false}}
-          component={Screen}
+          component={AIChatScreen}
         />
         <Tab.Screen
           name="Three"
@@ -126,7 +129,7 @@ const StackWrapper = () => {
   return (
     <Stack.Navigator
       screenOptions={StackNavigatorScreenOptions as any}
-      initialRouteName={'TabWrapper'}>
+      initialRouteName={'PurchaseScreen'}>
       {isFirstLaunch === undefined ? (
         <Stack.Screen
           name="Loading"
@@ -154,6 +157,11 @@ const StackWrapper = () => {
             options={PurchaseScreenOptions as any}
             name="PurchaseScreen"
             component={PurchaseScreen}
+          />
+          <Stack.Screen
+            options={TaskChatScreenOptions as any}
+            name="TaskChatScreen"
+            component={TaskChatScreen}
           />
         </>
       )}

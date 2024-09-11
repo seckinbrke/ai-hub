@@ -1,12 +1,15 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {MainMenuCard1, MainMenuCard2, MainMenuCard3} from '../components/MainMenuCards';
-import { theme } from '../constants/theme';
+import {
+  MainMenuCard1,
+  MainMenuCard2,
+  MainMenuCard3,
+} from '../components/MainMenuCards';
+import {theme} from '../constants/theme';
 
 const HomeScreen = ({navigation}: any) => {
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View>
         <Text style={styles.title}>
           Hello, <Text style={styles.name}>James</Text>
@@ -18,12 +21,14 @@ const HomeScreen = ({navigation}: any) => {
           <MainMenuCard1 onPress={() => navigation.navigate('ChatScreen')} />
         </View>
         <View style={styles.rightButtons}>
-          <MainMenuCard2  onPress={() => navigation.navigate('PurchaseScreen')} />
+          <MainMenuCard2
+            onPress={() => navigation.navigate('PurchaseScreen')}
+          />
           <MainMenuCard3 onPress={() => {}} />
         </View>
       </View>
       {/* Additional components like recent searches go here */}
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -31,7 +36,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    paddingTop: 86,
   },
   title: {
     fontSize: 32,

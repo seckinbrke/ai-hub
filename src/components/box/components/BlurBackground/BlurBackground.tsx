@@ -26,7 +26,7 @@ const BlurBackground = (): JSX.Element => {
 
   return (
     <Canvas style={styles.background}>
-      <BlurMask blur={20} style="normal" />
+      <BlurMask blur={80} style="normal" />
       {circles.map((_, index) => (
         <BlurCircle
           key={index}
