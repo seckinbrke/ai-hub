@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: theme.font.regular,
     color: '#FFF',
-    marginTop: 16,
+    marginTop: 12,
   },
   itemDesc: {
     fontSize: 10,

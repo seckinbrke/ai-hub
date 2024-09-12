@@ -10,11 +10,14 @@ const AIChatScreen = ({navigation}: any) => {
       <MasonryList
         style={styles.list}
         data={CATEGORY_ITEMS}
-        renderItem={({item}) => <CategoryItem navigation={navigation} item={item} />}
+        renderItem={({item}) => (
+          <CategoryItem navigation={navigation} item={item} />
+        )}
         showsVerticalScrollIndicator={false}
         keyExtractor={item => item.name}
         numColumns={2}
         contentContainerStyle={styles.contentContainer}
+        ListFooterComponent={<View style={styles.seperator} />}
       />
     </View>
   );
@@ -31,6 +34,9 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
   list: {alignSelf: 'stretch'},
+  seperator: {
+    height: 100,
+  },
 });
 
 export default AIChatScreen;

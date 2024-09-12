@@ -13,7 +13,6 @@ import {
 import ChatInputArea from '../components/ChatInputArea';
 import {theme} from '../constants/theme';
 import {WIDTH} from '../common/constants';
-import AnimatedTyping from '../utils/AnimatedTyping';
 import {setFreeRightsToStorage, triggerVibration} from '../common/functions';
 import {useDispatch, useSelector} from 'react-redux';
 import {setFreeRight} from '../redux/features/appSlice';
@@ -109,7 +108,12 @@ const ChatScreen = ({navigation, route}: any) => {
               <View
                 key={`assistant${index}`}
                 style={[styles.received, styles.chatBubble]}>
-                <AnimatedTyping text={[message?.content]} />
+                <Text
+                  selectable
+                  selectionColor={'purple'}
+                  style={styles.msgText}>
+                  {message?.content}
+                </Text>
               </View>
             );
           })}
