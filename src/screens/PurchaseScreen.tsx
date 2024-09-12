@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import PlanOption from '../components/PlanOption';
+import { theme } from '../constants/theme';
 
 const PurchaseScreen = () => {
   // Track which plan is expanded (default to 'monthly' expanded)
@@ -20,10 +21,7 @@ const PurchaseScreen = () => {
   const annualDetails = [...monthlyDetails];
 
   const toggleExpandPlan = (plan: any) => {
-    // If the clicked plan is not already expanded, expand it and collapse the other one
-    if (expandedPlan !== plan) {
-      setExpandedPlan(plan);
-    }
+    setExpandedPlan(prevPlan => (prevPlan === plan ? '' : plan));
   };
 
   return (
@@ -31,9 +29,10 @@ const PurchaseScreen = () => {
       {/* Monthly Plan */}
       <PlanOption
         title="Monthly Plan"
-        price="$10.99 / Month"
+        price="$10.99"
+        plan={'Month'}
         details={monthlyDetails}
-        isCollapsible={expandedPlan !== 'monthly'} // Collapsed when it's not the expanded plan
+        isVisible={expandedPlan === 'monthly'}
         onToggleCollapse={() => toggleExpandPlan('monthly')}
         isAutoPay={isMonthlyAutoPay}
         setIsAutoPay={setIsMonthlyAutoPay}
@@ -42,9 +41,10 @@ const PurchaseScreen = () => {
       {/* Annual Plan */}
       <PlanOption
         title="Annual Plan"
-        price="$30.59 / Annual"
+        price="$30.59"
+        plan={'Annual'}
         details={annualDetails}
-        isCollapsible={expandedPlan !== 'annual'} // Collapsed when it's not the expanded plan
+        isVisible={expandedPlan === 'annual'}
         onToggleCollapse={() => toggleExpandPlan('annual')}
         isAutoPay={isAnnualAutoPay}
         setIsAutoPay={setIsAnnualAutoPay}
@@ -53,8 +53,11 @@ const PurchaseScreen = () => {
       {/* Start Free Trial Button */}
       <TouchableOpacity>
         <LinearGradient
-          colors={['#32CD32', '#00FF7F']}
-          style={styles.startTrialButton}>
+          colors={theme.colors.gradients.generalGradient}
+          style={styles.startTrialButton}
+          start={{x: 1, y: 0}}
+          end={{x: 0, y: 0}}
+          >
           <Text style={styles.startTrialText}>
             Start your 7 days free trial
           </Text>
@@ -73,21 +76,22 @@ const PurchaseScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: 32,
   },
   startTrialButton: {
     paddingVertical: 15,
-    borderRadius: 25,
+    borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 20,
   },
   startTrialText: {
-    fontSize: 18,
-    color: '#fff',
+    fontSize: 15,
+    color: 'black',
+    fontFamily: theme.font.semiBold,
   },
   disclaimerText: {
-    fontSize: 12,
+    fontSize: 11,
     color: '#aaa',
     marginTop: 20,
     textAlign: 'center',

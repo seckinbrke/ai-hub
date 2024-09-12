@@ -129,7 +129,7 @@ const StackWrapper = () => {
   return (
     <Stack.Navigator
       screenOptions={StackNavigatorScreenOptions as any}
-      initialRouteName={'PurchaseScreen'}>
+      initialRouteName={'TabWrapper'}>
       {isFirstLaunch === undefined ? (
         <Stack.Screen
           name="Loading"
