@@ -4,7 +4,7 @@ export const theme = {
   colors: {
     main: {
       primary: '#252739',
-      secondary: '#FF6862',
+      secondary: '#A0FFD1',
       black: '#000000',
       white: '#FFFFFF',
     },

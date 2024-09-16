@@ -27,6 +27,7 @@ import SettingsScreen from './screens/SettingsScreen';
 import PurchaseScreen from './screens/PurchaseScreen';
 import AIChatScreen from './screens/AIChatScreen';
 import TaskChatScreen from './screens/TaskChatScreen';
+import AIArtScreen from './screens/AIArtScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -103,19 +104,19 @@ const StackWrapper = () => {
           />
         )}>
         <Tab.Screen
-          name="One"
+          name="HomeScreen"
           options={{headerShown: false}}
           component={HomeScreen}
         />
         <Tab.Screen
-          name="Two"
+          name="AIChatScreen"
           options={{headerShown: false}}
           component={AIChatScreen}
         />
         <Tab.Screen
-          name="Three"
+          name="AIArtScreen"
           options={{headerShown: false}}
-          component={Screen}
+          component={AIArtScreen}
         />
         <Tab.Screen
           name="home"

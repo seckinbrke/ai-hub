@@ -14,7 +14,7 @@ const AIChatScreen = ({navigation}: any) => {
           <CategoryItem navigation={navigation} item={item} />
         )}
         showsVerticalScrollIndicator={false}
-        keyExtractor={item => item.name}
+        keyExtractor={(_, index) => index.toString()}
         numColumns={2}
         contentContainerStyle={styles.contentContainer}
         ListFooterComponent={<View style={styles.seperator} />}
